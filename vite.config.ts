@@ -5,5 +5,5 @@ import { handlers } from './mock/handlers';
 
 export default defineConfig({
   plugins: [vue(), msw({ handlers })],
-  base: '/karasi/',
+  // base: '/',
 });
