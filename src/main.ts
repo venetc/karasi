@@ -6,15 +6,8 @@ import { VueQueryPlugin } from '@tanstack/vue-query';
 import { worker } from '../mock/browser';
 
 if (process.env.NODE_ENV === 'development') {
-
   worker.start({
-    onUnhandledRequest(req: { url: { pathname: string; }; }, print: { warning: () => void; }) {
-      if (req.url.pathname.startsWith('/favicon')) {
-        return;
-      }
-
-      print.warning();
-    },
+    onUnhandledRequest: 'bypass',
   });
 }
 

@@ -11,10 +11,15 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Rubik', sans-serif;
+  user-select: none;
 }
 
 #app {
   width: 100%;
+}
+
+.form {
+  margin: auto;
 }
 
 .n-card {
@@ -57,15 +62,10 @@ body {
 }
 
 .table {
-  padding-inline: 1rem;
-  padding-block: 1rem;
   display: flex;
-  align-items: center;
+  flex-flow: row wrap;
+  align-items: flex-start;
   justify-content: center;
-  @media (max-width: 768px) {
-    padding-inline: 0;
-    padding-block: 0;
-  }
 }
 
 .n-tab {
@@ -73,6 +73,8 @@ body {
     --n-tab-text-color-active: #ffa800 !important;
     --n-tab-text-color-hover: #ffa800 !important;
     max-width: 650px;
+    transition: all .3s cubic-bezier(.4, 0, .2, 1);
+    margin: 1rem;
 
     .n-tab-pane {
       column-gap: 16px;
@@ -109,6 +111,11 @@ body {
       transition: color .2s ease-in-out;
       color: white;
     }
+
+    &.isLoading {
+      filter: grayscale(1) opacity(0.5);
+      pointer-events: none;
+    }
   }
 }
 
@@ -116,7 +123,6 @@ body {
   border: 1px solid #ffa800;
   color: white;
   transition: background-color .1s ease-in-out, border-color .1s ease-in-out, colors .1s ease-in-out;
-  //width: 140px;
   height: 96px;
   display: block;
   border-radius: 20px;
@@ -125,7 +131,7 @@ body {
   cursor: pointer;
 
   &-wrapper {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     line-height: 1.2;
     text-transform: uppercase;
@@ -161,4 +167,60 @@ body {
     background-color: #ffa800;
     color: #223024;
   }
+}
+
+.table-info {
+  max-width: unset;
+  flex-basis: 19.5rem;
+  margin: 1rem;
+  padding: 0;
+  margin-block-start: 5rem;
+  @media (max-width: 992px) {
+    margin: 0;
+  }
+  @media (max-width: 768px) {
+    flex-basis: unset;
+  }
+
+  ol {
+    font-size: 0.8rem;
+  }
+
+  li {
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
+  }
+
+  &.n-card {
+    & > .n-card__action {
+      padding-block: 1.5rem;
+      position: relative;
+    }
+  }
+  .final-message {
+    position: absolute;
+    bottom: 0.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    line-height: 1.2;
+    width: 100%;
+    color: green;
+    overflow: hidden;
+    pointer-events: none;
+
+    span {
+      display: block;
+      transform: translateY(-100%);
+      transition: transform .1s ease-in-out;
+    }
+
+    &.active {
+      span {
+        transform: translateY(0)
+      }
+    }
+  }
+
 }

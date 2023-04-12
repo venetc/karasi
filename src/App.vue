@@ -39,7 +39,7 @@ const validate = () => {
 </script>
 
 <template>
-    <NCard v-if="isSuccess" bordered>
+    <NCard v-if="!isSuccess" bordered class="form">
         <NInput v-model:value="credentials.login"
                 type="text"
                 name="name"

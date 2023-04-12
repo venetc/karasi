@@ -2,21 +2,26 @@
 import {rest} from 'msw'
 
 export const handlers = [
-    rest.post('/login', (req, res, ctx) => {
-        // Persist user's authentication in the session
-        sessionStorage.setItem('is-authenticated', 'true')
+    rest.post('/tables', (req, res, ctx) => {
+
+        req.json().then(tables => sessionStorage.setItem('tables', JSON.stringify(tables)))
 
         return res(
-            // Respond with a 200 status code
+            ctx.delay(1000),
             ctx.status(200),
+            ctx.json({message: 'success'})
         )
     }),
 
     rest.get('/tables', (req, res, ctx) => {
 
-        return res(
-            ctx.status(200),
-            ctx.json({
+        const tables = sessionStorage.getItem('tables')
+
+        let data;
+
+        tables
+            ? data = JSON.parse(tables)
+            : data = {
                 filial_1: {
                     '18.06-25.06': false,
                     '25.06-02.07': true,
@@ -68,7 +73,12 @@ export const handlers = [
                     '19.09-26.09': false,
                     '26.09-03.10': false,
                 },
-            }),
+            }
+
+        return res(
+            ctx.delay(1000),
+            ctx.status(200),
+            ctx.json(data),
         )
     }),
 ]
