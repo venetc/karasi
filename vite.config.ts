@@ -5,6 +5,7 @@ import { handlers } from './mock/handlers';
 
 export default defineConfig({
   plugins: [vue(), msw({ handlers })],
+  base: '/karasi/',
   build: {
     emptyOutDir: true,
     outDir: './docs', // this line place index.html in the public folder
