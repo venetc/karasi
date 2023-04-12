@@ -195,13 +195,13 @@ const tables = ref<SerializedBookings>([{
 const queryClient = useQueryClient();
 
 const get = async () => {
-  const response = await fetch('http://localhost:5173/tables', { method: 'GET' });
+  const response = await fetch('/tables', { method: 'GET' });
 
   return response.json();
 };
 
 const post = async (tables: Bookings) => {
-  const response = await fetch('http://localhost:5173/tables', { method: 'POST', body: JSON.stringify(tables) });
+  const response = await fetch('/tables', { method: 'POST', body: JSON.stringify(tables) });
 
   return response.json();
 };

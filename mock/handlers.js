@@ -2,7 +2,7 @@
 import {rest} from 'msw'
 
 export const handlers = [
-    rest.post('/karasi/tables', (req, res, ctx) => {
+    rest.post('/tables', (req, res, ctx) => {
 
         req.json().then(tables => sessionStorage.setItem('tables', JSON.stringify(tables)))
 
@@ -13,7 +13,7 @@ export const handlers = [
         )
     }),
 
-    rest.get('/karasi/tables', (req, res, ctx) => {
+    rest.get('/tables', (req, res, ctx) => {
 
         const tables = sessionStorage.getItem('tables')
 
