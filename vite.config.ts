@@ -8,7 +8,7 @@ export default defineConfig({
   base: '/karasi/',
   build: {
     emptyOutDir: true,
-    outDir: './docs', // this line place index.html in the public folder
-    assetsDir: './', // this line place your assets in the public/dist folder
+/*    outDir: './docs', // this line place index.html in the public folder
+    assetsDir: './', // this line place your assets in the public/dist folder*/
   },
 });
